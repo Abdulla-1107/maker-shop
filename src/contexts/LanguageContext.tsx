@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 
-type Language = 'en' | 'uz';
+type Language = 'en' | 'uz' | 'ru';
 
 interface LanguageContextType {
   language: Language;
@@ -98,6 +98,34 @@ const translations = {
     step: "Step",
     difficulty: "Difficulty",
     price: "Price",
+    
+    // Cart
+    cart: "Cart",
+    cartEmpty: "Your cart is empty",
+    total: "Total",
+    checkout: "Checkout",
+    addedToCart: "Added to Cart",
+    addedToCartMessage: "has been added to your cart",
+    
+    // Checkout
+    phone: "Phone",
+    address: "Address",
+    paymentMethod: "Payment Method",
+    cash: "Cash",
+    card: "Card",
+    cancel: "Cancel",
+    submitOrder: "Submit Order",
+    orderSuccess: "Order Placed! 💕",
+    orderSuccessMessage: "Your order has been placed successfully!",
+    error: "Error",
+    fillAllFields: "Please fill in all fields",
+    enterName: "Enter your full name",
+    enterPhone: "Enter your phone number",
+    enterAddress: "Enter your delivery address",
+    
+    // Product Detail
+    backToShop: "Back to Shop",
+    productNotFound: "Product not found",
   },
   uz: {
     // Navigation
@@ -186,6 +214,150 @@ const translations = {
     step: "Qadam",
     difficulty: "Qiyinchilik",
     price: "Narx",
+    
+    // Cart
+    cart: "Savat",
+    cartEmpty: "Savatingiz bo'sh",
+    total: "Jami",
+    checkout: "Rasmiylashtirish",
+    addedToCart: "Savatga qo'shildi",
+    addedToCartMessage: "savatingizga qo'shildi",
+    
+    // Checkout
+    phone: "Telefon",
+    address: "Manzil",
+    paymentMethod: "To'lov usuli",
+    cash: "Naqd",
+    card: "Karta",
+    cancel: "Bekor qilish",
+    submitOrder: "Buyurtma berish",
+    orderSuccess: "Buyurtma qabul qilindi! 💕",
+    orderSuccessMessage: "Buyurtmangiz muvaffaqiyatli qabul qilindi!",
+    error: "Xato",
+    fillAllFields: "Iltimos, barcha maydonlarni to'ldiring",
+    enterName: "To'liq ismingizni kiriting",
+    enterPhone: "Telefon raqamingizni kiriting",
+    enterAddress: "Yetkazib berish manzilini kiriting",
+    
+    // Product Detail
+    backToShop: "Do'konga qaytish",
+    productNotFound: "Mahsulot topilmadi",
+  },
+  ru: {
+    // Navigation
+    home: "Главная",
+    shop: "Магазин",
+    tutorials: "Уроки",
+    about: "О нас",
+    community: "Сообщество",
+    contact: "Контакты",
+    
+    // Home Page
+    heroTitle: "Создайте свою магию ✨",
+    heroSubtitle: "Все необходимое для кукол и одежды ручной работы",
+    shopNow: "В магазин",
+    whatsInside: "Что в наборе?",
+    fabricTitle: "Премиум ткани",
+    fabricDesc: "Мягкий хлопок и фетр",
+    patternsTitle: "Простые выкройки",
+    patternsDesc: "Пошаговые шаблоны",
+    accessoriesTitle: "Все аксессуары",
+    accessoriesDesc: "Пуговицы, глазки и украшения",
+    guideTitle: "Полное руководство",
+    guideDesc: "Подробные инструкции включены",
+    startCreating: "Начните свое первое творение!",
+    beginJourney: "Начните творческое путешествие",
+    
+    // Shop Page
+    shopTitle: "Творческие наборы",
+    shopSubtitle: "Наборы для каждого уровня мастерства",
+    beginner: "Начинающий",
+    intermediate: "Средний",
+    advanced: "Продвинутый",
+    quickView: "Быстрый просмотр",
+    whatsIncluded: "Что входит в набор",
+    whatYouNeed: "Что вам понадобится",
+    addToCart: "В корзину",
+    
+    // Tutorials Page
+    tutorialsTitle: "Уроки рукоделия",
+    tutorialsSubtitle: "Пошаговые руководства для создания красивых кукол ручной работы",
+    gettingStarted: "Начало работы: Ваша первая кукла",
+    creatingClothes: "Создание одежды для кукол",
+    advancedTechniques: "Продвинутые техники",
+    videoComingSoon: "Видеоурок скоро появится",
+    downloadGuide: "Скачать полное руководство",
+    
+    // About Page
+    aboutTitle: "Наша история",
+    aboutSubtitle: "Где творчество встречается с мастерством",
+    creativityLives: "Мы верим, что творчество живет в каждом.",
+    aboutText1: "Nodira родилась из простой идеи: каждый заслуживает испытать радость создания чего-то своими руками. В мире массового производства мы хотели вернуть магию ручного творчества.",
+    aboutText2: "Каждый набор создан с любовью, протестирован настоящими мастерами и наполнен премиальными материалами. Мы не просто продаем наборы для шитья – мы создаем возможности для вас открыть свой творческий дух, стежок за стежком.",
+    aboutText3: "Создаете ли вы свою первую куклу или сотую, мы здесь, чтобы поддержать ваше творческое путешествие. Присоединяйтесь к нашему сообществу мастеров, мечтателей и художников, которые верят в силу рукотворной радости.",
+    madeWithLove: "Сделано с любовью",
+    madeWithLoveDesc: "Каждый набор тщательно подобран с вниманием к деталям и любовью к ремеслу",
+    sparkCreativity: "Зажигаем творчество",
+    sparkCreativityDesc: "Мы верим, что в каждом есть внутренний художник, ждущий создать что-то волшебное",
+    buildCommunity: "Создаем сообщество",
+    buildCommunityDesc: "Общайтесь с мастерами и делитесь своими творениями ручной работы",
+    qualityFirst: "Качество прежде всего",
+    qualityFirstDesc: "Премиальные материалы и четкие инструкции обеспечивают ваш успех",
+    
+    // Community Page
+    communityTitle: "Наше творческое сообщество",
+    communitySubtitle: "Присоединяйтесь к тысячам мастеров, делящихся своими творениями",
+    shareCreation: "Поделитесь своим творением",
+    customerStories: "Истории клиентов",
+    joinFamily: "Присоединяйтесь к нашей творческой семье 💕",
+    
+    // Contact Page
+    contactTitle: "Свяжитесь с нами",
+    contactSubtitle: "Мы будем рады услышать вас",
+    name: "Имя",
+    email: "Email",
+    message: "Сообщение",
+    sendMessage: "Отправить сообщение",
+    followUs: "Следите за нами",
+    
+    // Footer
+    footerTagline: "Сделано с любовью, создано с заботой",
+    quickLinks: "Быстрые ссылки",
+    connectWithUs: "Свяжитесь с нами",
+    allRightsReserved: "Все права защищены",
+    
+    // Product specific
+    step: "Шаг",
+    difficulty: "Сложность",
+    price: "Цена",
+    
+    // Cart
+    cart: "Корзина",
+    cartEmpty: "Ваша корзина пуста",
+    total: "Итого",
+    checkout: "Оформить заказ",
+    addedToCart: "Добавлено в корзину",
+    addedToCartMessage: "добавлено в вашу корзину",
+    
+    // Checkout
+    phone: "Телефон",
+    address: "Адрес",
+    paymentMethod: "Способ оплаты",
+    cash: "Наличные",
+    card: "Карта",
+    cancel: "Отмена",
+    submitOrder: "Оформить заказ",
+    orderSuccess: "Заказ оформлен! 💕",
+    orderSuccessMessage: "Ваш заказ успешно оформлен!",
+    error: "Ошибка",
+    fillAllFields: "Пожалуйста, заполните все поля",
+    enterName: "Введите ваше полное имя",
+    enterPhone: "Введите ваш номер телефона",
+    enterAddress: "Введите адрес доставки",
+    
+    // Product Detail
+    backToShop: "Вернуться в магазин",
+    productNotFound: "Товар не найден",
   }
 };
 

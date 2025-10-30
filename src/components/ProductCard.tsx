@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { useCart } from "@/contexts/CartContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface ProductCardProps {
   id: number;
@@ -11,7 +15,12 @@ interface ProductCardProps {
   description?: string;
 }
 
-const ProductCard = ({ name, price, image, difficulty, description }: ProductCardProps) => {
+const ProductCard = ({ id, name, price, image, difficulty, description }: ProductCardProps) => {
+  const navigate = useNavigate();
+  const { addItem } = useCart();
+  const { t } = useLanguage();
+  const { toast } = useToast();
+  
   const difficultyDots = Array(5).fill(0).map((_, i) => (
     <div
       key={i}
@@ -20,9 +29,21 @@ const ProductCard = ({ name, price, image, difficulty, description }: ProductCar
       }`}
     />
   ));
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    addItem({ id, name, price, image, difficulty, description });
+    toast({
+      title: t("addedToCart"),
+      description: `${name} ${t("addedToCartMessage")}`,
+    });
+  };
   
   return (
-    <Card className="overflow-hidden hover-lift cursor-pointer group border-border/50 shadow-soft">
+    <Card 
+      className="overflow-hidden hover-lift cursor-pointer group border-border/50 shadow-soft"
+      onClick={() => navigate(`/product/${id}`)}
+    >
       <CardHeader className="p-0 relative overflow-hidden">
         <div className="aspect-square overflow-hidden">
           <img
@@ -48,9 +69,12 @@ const ProductCard = ({ name, price, image, difficulty, description }: ProductCar
         </div>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Button className="w-full hover-glow transition-all duration-300">
+        <Button 
+          className="w-full hover-glow transition-all duration-300"
+          onClick={handleAddToCart}
+        >
           <ShoppingCart className="w-4 h-4 mr-2" />
-          Add to Cart
+          {t("addToCart")}
         </Button>
       </CardFooter>
     </Card>
