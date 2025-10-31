@@ -24,30 +24,39 @@ const Home = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+      <section className="relative w-full overflow-hidden">
+        <div className="relative w-full h-[55vh] sm:h-[60vh] md:h-[80vh]">
           <img
             src={heroBanner}
             alt="Handmade dolls and sewing materials"
-            className="w-full h-full object-cover brightness-105"
+            className="w-full h-full object-cover object-center md:object-[center_30%] brightness-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/5 to-background/20" />
+
+          {/* Overlay (mobile kuchliroq, desktop yumshoqroq) */}
+          <div
+            className="absolute inset-0 bg-gradient-to-b 
+      from-black/60 via-black/40 to-black/20
+      md:from-black/20 md:via-black/10 md:to-black/0"
+          />
         </div>
 
-        <div className="relative z-10 text-center space-y-6 px-4 animate-fade-in">
-          <h1 className="font-heading text-5xl md:text-7xl font-bold text-gradient"></h1>
-          <p className="text-xl md:text-2xl text-foreground/80 max-w-2xl mx-auto font-light">
-            {t("heroSubtitle")}
-          </p>
-          <Link to="/shop">
-            <Button
-              size="lg"
-              className="text-lg px-8 py-6 animate-float hover-glow"
-            >
-              <Sparkles className="mr-2 w-5 h-5" />
-              {t("shopNow")}
-            </Button>
-          </Link>
+        {/* Content */}
+        <div className="absolute inset-0 flex items-center justify-center px-4">
+          <div className="text-center space-y-4 sm:space-y-6 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-2xl text-white/90 font-light drop-shadow-xl">
+              {t("heroSubtitle")}
+            </p>
+
+            <Link to="/shop">
+              <Button
+                size="lg"
+                className="text-lg px-8 py-6 animate-float hover-glow shadow-xl shadow-black/30"
+              >
+                <Sparkles className="mr-2 w-5 h-5" />
+                {t("shopNow")}
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
