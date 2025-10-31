@@ -21,7 +21,6 @@ const translations = {
     contact: "Contact",
     
     // Home Page
-    heroTitle: "Create your own magic ✨",
     heroSubtitle: "Everything you need for handmade dolls and outfits",
     shopNow: "Shop Now",
     whatsInside: "What's Inside the Kit?",
@@ -137,7 +136,6 @@ const translations = {
     contact: "Aloqa",
     
     // Home Page
-    heroTitle: "O'z sehringizni yarating ✨",
     heroSubtitle: "Qo'lda tikilgan qo'g'irchoqlar va kiyimlar uchun hamma narsa",
     shopNow: "Xarid qilish",
     whatsInside: "To'plamda nima bor?",
@@ -253,7 +251,6 @@ const translations = {
     contact: "Контакты",
     
     // Home Page
-    heroTitle: "Создайте свою магию ✨",
     heroSubtitle: "Все необходимое для кукол и одежды ручной работы",
     shopNow: "В магазин",
     whatsInside: "Что в наборе?",
