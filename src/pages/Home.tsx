@@ -24,33 +24,34 @@ const Home = () => {
       <Navigation />
 
       {/* Hero Section */}
+      {/* Hero Section */}
       <section className="relative w-full overflow-hidden">
-        <div className="relative w-full h-[55vh] sm:h-[60vh] md:h-[80vh]">
+        <div className="relative w-full h-[60vh] sm:h-[65vh] md:h-[85vh]">
           <img
             src={heroBanner}
             alt="Handmade dolls and sewing materials"
-            className="w-full h-full object-cover object-center md:object-[center_30%] brightness-110"
+            className="w-full h-full object-cover object-[center_30%] md:object-[center_15%]"
           />
 
-          {/* Overlay (mobile kuchliroq, desktop yumshoqroq) */}
+          {/* Overlay - mobile kuchliroq, desktop yumshoqroq */}
           <div
             className="absolute inset-0 bg-gradient-to-b 
-      from-black/60 via-black/40 to-black/20
+      from-black/70 via-black/50 to-black/10
       md:from-black/20 md:via-black/10 md:to-black/0"
           />
         </div>
 
         {/* Content */}
-        <div className="absolute inset-0 flex items-center justify-center px-4">
-          <div className="text-center space-y-4 sm:space-y-6 max-w-3xl mx-auto">
-            <p className="text-base sm:text-lg md:text-2xl text-white/90 font-light drop-shadow-xl">
+        <div className="absolute inset-0 flex items-center sm:items-center md:items-center justify-center px-4">
+          <div className="text-center space-y-4 sm:space-y-6 max-w-3xl mx-auto translate-y-[-10%] sm:translate-y-0">
+            <p className="text-base sm:text-lg md:text-2xl text-white/90 font-light max-w-xl mx-auto drop-shadow-xl">
               {t("heroSubtitle")}
             </p>
 
             <Link to="/shop">
               <Button
                 size="lg"
-                className="text-lg px-8 py-6 animate-float hover-glow shadow-xl shadow-black/30"
+                className="text-lg px-8 py-6 animate-float hover-glow shadow-xl shadow-black/40 bg-pink-400 hover:bg-pink-300 text-white border-0"
               >
                 <Sparkles className="mr-2 w-5 h-5" />
                 {t("shopNow")}
