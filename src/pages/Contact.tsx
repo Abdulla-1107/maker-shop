@@ -16,9 +16,9 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
@@ -27,11 +27,11 @@ const Contact = () => {
     });
     setFormData({ name: "", email: "", message: "" });
   };
-  
+
   return (
     <div className="min-h-screen">
       <Navigation />
-      
+
       <div className="container mx-auto px-4 py-12">
         <div className="text-center mb-12 space-y-4 animate-fade-in">
           <h1 className="font-heading text-5xl md:text-6xl font-bold text-gradient">
@@ -41,7 +41,7 @@ const Contact = () => {
             {t("contactSubtitle")}
           </p>
         </div>
-        
+
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Contact Form */}
           <Card className="border-border/50 shadow-soft">
@@ -54,13 +54,15 @@ const Contact = () => {
                   <Input
                     id="name"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     placeholder="Emma Johnson"
                     required
                     className="transition-all focus:shadow-soft"
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-sm font-medium">
                     {t("email")}
@@ -69,13 +71,15 @@ const Contact = () => {
                     id="email"
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                     placeholder="emma@example.com"
                     required
                     className="transition-all focus:shadow-soft"
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="message" className="text-sm font-medium">
                     {t("message")}
@@ -83,14 +87,16 @@ const Contact = () => {
                   <Textarea
                     id="message"
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
                     placeholder="Tell us what's on your mind..."
                     required
                     rows={6}
                     className="transition-all focus:shadow-soft resize-none"
                   />
                 </div>
-                
+
                 <Button type="submit" className="w-full hover-glow">
                   <Mail className="mr-2 w-4 h-4" />
                   {t("sendMessage")}
@@ -98,7 +104,7 @@ const Contact = () => {
               </form>
             </CardContent>
           </Card>
-          
+
           {/* Contact Info */}
           <div className="space-y-6">
             <Card className="border-border/50 shadow-soft">
@@ -108,7 +114,7 @@ const Contact = () => {
                     <Heart className="w-8 h-8 text-white" fill="white" />
                   </div>
                 </div>
-                
+
                 <div className="text-center space-y-2">
                   <h3 className="font-heading text-xl font-semibold">
                     We're Here to Help
@@ -117,12 +123,14 @@ const Contact = () => {
                     Our team typically responds within 24 hours
                   </p>
                 </div>
-                
+
                 <div className="border-t border-border pt-6 space-y-4">
-                  <h4 className="font-heading font-semibold">{t("followUs")}</h4>
-                  
+                  <h4 className="font-heading font-semibold">
+                    {t("followUs")}
+                  </h4>
+
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/mahina_dolls"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted transition-colors group"
@@ -132,10 +140,9 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="font-medium">Instagram</p>
-                      <p className="text-xs text-muted-foreground">@cozycrafts</p>
                     </div>
                   </a>
-                  
+
                   <a
                     href="https://t.me"
                     target="_blank"
@@ -147,17 +154,17 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="font-medium">Telegram</p>
-                      <p className="text-xs text-muted-foreground">@cozycrafts</p>
                     </div>
                   </a>
                 </div>
               </CardContent>
             </Card>
-            
+
             <Card className="border-border/50 shadow-soft bg-gradient-to-br from-primary/10 to-secondary/10">
               <CardContent className="p-6 md:p-8 text-center space-y-3">
                 <p className="text-sm text-muted-foreground">
-                  "Every message means the world to us. We're so grateful to be part of your creative journey!"
+                  "Every message means the world to us. We're so grateful to be
+                  part of your creative journey!"
                 </p>
                 <p className="font-heading font-semibold">- Nodira 💕</p>
               </CardContent>
@@ -165,7 +172,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );
