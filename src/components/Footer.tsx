@@ -1,14 +1,16 @@
 import { Heart, Instagram, Send } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import parvoz from "@/assets/parvoz.png";
 
 const Footer = () => {
   const { t } = useLanguage();
-  
+
   return (
-    <footer className="bg-card border-t border-border mt-20">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="relative bg-card border-t border-border mt-20">
+      <div className="container mx-auto px-4 py-12 relative overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Left Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
@@ -22,27 +24,45 @@ const Footer = () => {
               {t("footerTagline")}
             </p>
           </div>
-          
+
+          {/* Middle Section */}
           <div>
-            <h3 className="font-heading text-lg font-semibold mb-4">{t("quickLinks")}</h3>
+            <h3 className="font-heading text-lg font-semibold mb-4">
+              {t("quickLinks")}
+            </h3>
             <div className="space-y-2">
-              <Link to="/shop" className="block text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                to="/shop"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
                 {t("shop")}
               </Link>
-              <Link to="/tutorials" className="block text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                to="/tutorials"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
                 {t("tutorials")}
               </Link>
-              <Link to="/community" className="block text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                to="/community"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
                 {t("community")}
               </Link>
-              <Link to="/about" className="block text-muted-foreground hover:text-primary transition-colors">
+              <Link
+                to="/about"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
                 {t("about")}
               </Link>
             </div>
           </div>
-          
+
+          {/* Right Section */}
           <div>
-            <h3 className="font-heading text-lg font-semibold mb-4">{t("connectWithUs")}</h3>
+            <h3 className="font-heading text-lg font-semibold mb-4">
+              {t("connectWithUs")}
+            </h3>
             <div className="flex space-x-4">
               <a
                 href="https://instagram.com"
@@ -63,9 +83,24 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        
-        <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>© 2024 Nodira. {t("allRightsReserved")} ✨</p>
+
+        {/* Divider */}
+        <div className="mt-8 pt-6 border-t border-border text-center text-sm text-muted-foreground relative">
+          <p>© 2025 Nodira. {t("allRightsReserved")} ✨</p>
+
+          {/* 🌟 Parvoz Logo — joyni egallamaydi */}
+          <a
+            href="https://parvozcompany.uz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute bottom-2 right-4 hover:scale-105 transition-transform duration-300"
+          >
+            <img
+              src={parvoz}
+              alt="Parvoz Company"
+              className="w-16 opacity-80 hover:opacity-100 rounded-xl"
+            />
+          </a>
         </div>
       </div>
     </footer>

@@ -12,7 +12,7 @@ const Shop = () => {
   if (isLoading)
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p>{t("loading")}...</p>
+        <p className="text-lg font-medium">{t("loading")}...</p>
       </div>
     );
 
@@ -24,44 +24,50 @@ const Shop = () => {
     );
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Navigation />
 
-      <div className="container mx-auto px-4 py-12">
+      <main className="flex-grow container mx-auto px-4 py-12">
         <div className="text-center mb-12 space-y-4 animate-fade-in">
-          <h1 className="font-heading text-5xl md:text-6xl font-bold text-gradient">
+          <h1 className="font-heading text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary via-pink-500 to-purple-500 dark:from-pink-400 dark:via-purple-400 dark:to-indigo-300 bg-clip-text text-transparent">
             {t("shopTitle")}
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto dark:text-gray-300">
             {t("shopSubtitle")}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {data?.map((product: any) => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              name={
-                language === "uz"
-                  ? product.name_uz
-                  : language === "ru"
-                  ? product.name_ru
-                  : product.name_en
-              }
-              description={
-                language === "uz"
-                  ? product.description_uz
-                  : language === "ru"
-                  ? product.description_ru
-                  : product.description_en
-              }
-              image={product.image}
-              price={product.price}
-            />
-          ))}
-        </div>
-      </div>
+        {data && data.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {data.map((product: any) => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                name={
+                  language === "uz"
+                    ? product.name_uz
+                    : language === "ru"
+                    ? product.name_ru
+                    : product.name_en
+                }
+                description={
+                  language === "uz"
+                    ? product.description_uz
+                    : language === "ru"
+                    ? product.description_ru
+                    : product.description_en
+                }
+                image={product.image}
+                price={product.price}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20 text-muted-foreground">
+            <p>{t("noProductsAvailable")}</p>
+          </div>
+        )}
+      </main>
 
       <Footer />
     </div>
