@@ -123,9 +123,8 @@ const translations = {
     // Checkout
     phone: "Phone",
     address: "Address",
-    paymentMethod: "Payment Method",
-    cash: "Cash",
-    card: "Card",
+    iAcceptOferta: "I have read and agree to the offer terms",
+    acceptOferta: "Please confirm you have read and accepted the offer",
     cancel: "Cancel",
     submitOrder: "Submit Order",
     orderSuccess: "Order Placed! 💕",
@@ -135,6 +134,14 @@ const translations = {
     enterName: "Enter your full name",
     enterPhone: "Enter your phone number",
     enterAddress: "Enter your delivery address",
+
+    iAccept: "I have read and agree to the",
+    oferta: "offer terms",
+    ofertaTitle: "Public Offer Agreement",
+    ofertaText1: "By placing an order, you agree to the terms of this offer...",
+    ofertaText2: "You must provide accurate information for your order.",
+    ofertaText3: "We reserve the right to modify this offer at any time.",
+    close: "Close",
 
     // Product Detail
     backToShop: "Back to Shop",
@@ -249,12 +256,11 @@ const translations = {
     // Checkout
     phone: "Telefon",
     address: "Manzil",
-    paymentMethod: "To'lov usuli",
-    cash: "Naqd",
-    card: "Karta",
     cancel: "Bekor qilish",
     submitOrder: "Buyurtma berish",
     orderSuccess: "Buyurtma qabul qilindi! 💕",
+    iAcceptOferta: "Men ofertani o‘qidim va roziman",
+    acceptOferta: "Iltimos, ofertani o‘qiganingizni tasdiqlang",
     orderSuccessMessage: "Buyurtmangiz muvaffaqiyatli qabul qilindi!",
     error: "Xato",
     fillAllFields: "Iltimos, barcha maydonlarni to'ldiring",
@@ -262,10 +268,24 @@ const translations = {
     enterPhone: "Telefon raqamingizni kiriting",
     enterAddress: "Yetkazib berish manzilini kiriting",
 
+    iAccept: "Men",
+    oferta: "ofertani o‘qidim va roziman",
+    ofertaTitle: "Ommaviy oferta shartlari",
+    ofertaText1:
+      "Ushbu shartlar asosida siz bizning xizmatlarimizdan foydalanishni qabul qilasiz...",
+    ofertaText2:
+      "Buyurtma to‘g‘risidagi barcha ma’lumotlar to‘g‘ri kiritilishi lozim...",
+    ofertaText3:
+      "Biz ushbu ofertani istalgan vaqtda o‘zgartirish huquqini saqlab qolamiz.",
+    close: "Yopish",
+
     // Product Detail
     backToShop: "Do'konga qaytish",
     productNotFound: "Mahsulot topilmadi",
+
+    //
   },
+
   ru: {
     // Navigation
     home: "Главная",
@@ -376,18 +396,25 @@ const translations = {
     // Checkout
     phone: "Телефон",
     address: "Адрес",
-    paymentMethod: "Способ оплаты",
-    cash: "Наличные",
-    card: "Карта",
     cancel: "Отмена",
     submitOrder: "Оформить заказ",
     orderSuccess: "Заказ оформлен! 💕",
     orderSuccessMessage: "Ваш заказ успешно оформлен!",
+    iAcceptOferta: "Я прочитал(а) и согласен(на) с офертой",
+    acceptOferta: "Пожалуйста, подтвердите, что вы прочитали оферту",
     error: "Ошибка",
     fillAllFields: "Пожалуйста, заполните все поля",
     enterName: "Введите ваше полное имя",
     enterPhone: "Введите ваш номер телефона",
     enterAddress: "Введите адрес доставки",
+
+    iAccept: "Я прочитал(а) и согласен(на) с",
+    oferta: "условиями оферты",
+    ofertaTitle: "Публичная оферта",
+    ofertaText1: "Оформляя заказ, вы соглашаетесь с условиями оферты...",
+    ofertaText2: "Вы обязаны вводить точные данные для заказа.",
+    ofertaText3: "Мы оставляем за собой право изменять оферту в любое время.",
+    close: "Закрыть",
 
     // Product Detail
     backToShop: "Вернуться в магазин",
