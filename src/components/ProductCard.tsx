@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ImageWithLoader from "@/components/ImageWithLoader";
 import {
   Card,
   CardContent,
@@ -60,11 +61,7 @@ const ProductCard = ({
     >
       <CardHeader className="p-0 relative overflow-hidden">
         <div className="aspect-square overflow-hidden">
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
+          <ImageWithLoader src={image} alt={name} />
         </div>
         <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
           ${price.toFixed(2)}

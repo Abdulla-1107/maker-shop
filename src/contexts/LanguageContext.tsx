@@ -137,10 +137,15 @@ const translations = {
 
     iAccept: "I have read and agree to the",
     oferta: "offer terms",
-    ofertaTitle: "Public Offer Agreement",
-    ofertaText1: "By placing an order, you agree to the terms of this offer...",
-    ofertaText2: "You must provide accurate information for your order.",
-    ofertaText3: "We reserve the right to modify this offer at any time.",
+    ofertaText1:
+      "This document is a public offer published by [company name] in accordance with the Civil Code of the Republic of Uzbekistan, the Law 'On Electronic Commerce,' and the Law 'On Personal Data.' By entering their information on the website and clicking the 'Agree' button, the client fully accepts these terms.",
+
+    ofertaText2:
+      "Personal data provided by the client is used solely for order processing, service delivery, communication, and improving service quality. The Company undertakes not to share this data with third parties and to maintain its confidentiality.",
+
+    ofertaText3:
+      "The Company reserves the right to amend this offer at any time. The new version takes effect immediately upon publication on the website. By entering data and clicking the 'Agree' button, the client confirms full acceptance of all terms stated in this document.",
+
     close: "Close",
 
     // Product Detail
@@ -272,11 +277,14 @@ const translations = {
     oferta: "ofertani o‘qidim va roziman",
     ofertaTitle: "Ommaviy oferta shartlari",
     ofertaText1:
-      "Ushbu shartlar asosida siz bizning xizmatlarimizdan foydalanishni qabul qilasiz...",
+      "Ushbu hujjat O‘zbekiston Respublikasi Fuqarolik kodeksi, “Elektron tijorat to‘g‘risida”gi Qonun hamda “Shaxsga doir ma’lumotlar to‘g‘risida”gi Qonunga muvofiq, [kompaniya nomi] tomonidan e’lon qilingan ommaviy oferta hisoblanadi. Mijoz sayt orqali ma’lumot kiritish va “Roziman” tugmasini bosish orqali ushbu shartlarga to‘liq rozilik bildiradi.",
+
     ofertaText2:
-      "Buyurtma to‘g‘risidagi barcha ma’lumotlar to‘g‘ri kiritilishi lozim...",
+      "Mijoz tomonidan taqdim etilgan shaxsiy ma’lumotlar faqat buyurtmani qayta ishlash, xizmatni yetkazib berish, aloqa o‘rnatish hamda xizmat sifatini yaxshilash maqsadida ishlatiladi. Ijrochi ushbu ma’lumotlarni uchinchi shaxslarga bermaslik va ularni maxfiy saqlash majburiyatini oladi.",
+
     ofertaText3:
-      "Biz ushbu ofertani istalgan vaqtda o‘zgartirish huquqini saqlab qolamiz.",
+      "Ijrochi ushbu ofertaga istalgan vaqtda o‘zgartirishlar kiritish huquqini saqlab qoladi. Yangi tahrir saytga joylashtirilgan paytdan boshlab kuchga kiradi. Mijoz tomonidan ma’lumot kiritish va “Roziman” tugmasini bosish ushbu hujjatdagi barcha shartlarga rozilik berilganligini bildiradi.",
+
     close: "Yopish",
 
     // Product Detail
@@ -411,9 +419,15 @@ const translations = {
     iAccept: "Я прочитал(а) и согласен(на) с",
     oferta: "условиями оферты",
     ofertaTitle: "Публичная оферта",
-    ofertaText1: "Оформляя заказ, вы соглашаетесь с условиями оферты...",
-    ofertaText2: "Вы обязаны вводить точные данные для заказа.",
-    ofertaText3: "Мы оставляем за собой право изменять оферту в любое время.",
+    ofertaText1:
+      "Настоящий документ является публичной офертой, опубликованной [название компании] в соответствии с Гражданским кодексом Республики Узбекистан, Законом «Об электронной коммерции» и Законом «О персональных данных». Вводя свои данные на сайте и нажимая кнопку «Согласен», клиент подтверждает полное согласие с условиями оферты.",
+
+    ofertaText2:
+      "Персональные данные, предоставленные клиентом, используются исключительно для обработки заказа, доставки услуги, установления связи и повышения качества обслуживания. Исполнитель обязуется не передавать данные третьим лицам и обеспечивать их конфиденциальность.",
+
+    ofertaText3:
+      "Исполнитель сохраняет за собой право вносить изменения в данную оферту в любое время. Новая редакция вступает в силу с момента её публикации на сайте. Ввод данных и нажатие кнопки «Согласен» означает полное согласие клиента с условиями данного документа.",
+
     close: "Закрыть",
 
     // Product Detail
