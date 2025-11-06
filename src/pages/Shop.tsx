@@ -7,7 +7,8 @@ import { useNabor } from "@/hooks/useNabor";
 const Shop = () => {
   const { t, language } = useLanguage();
   const { getNabor } = useNabor();
-  const { data, isLoading, error } = getNabor({});
+  const { data: responseData, isLoading, error } = getNabor({});
+  const products = responseData?.data || [];
 
   if (isLoading)
     return (
@@ -37,36 +38,30 @@ const Shop = () => {
           </p>
         </div>
 
-        {data && data.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {data.map((product: any) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                name={
-                  language === "uz"
-                    ? product.name_uz
-                    : language === "ru"
-                    ? product.name_ru
-                    : product.name_en
-                }
-                description={
-                  language === "uz"
-                    ? product.description_uz
-                    : language === "ru"
-                    ? product.description_ru
-                    : product.description_en
-                }
-                image={product.image}
-                price={product.price}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-20 text-muted-foreground">
-            <p>{t("noProductsAvailable")}</p>
-          </div>
-        )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((product: any) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              name={
+                language === "uz"
+                  ? product.name_uz
+                  : language === "ru"
+                  ? product.name_ru
+                  : product.name_en
+              }
+              description={
+                language === "uz"
+                  ? product.description_uz
+                  : language === "ru"
+                  ? product.description_ru
+                  : product.description_en
+              }
+              image={product.image}
+              price={product.price}
+            />
+          ))}
+        </div>
       </main>
 
       <Footer />
