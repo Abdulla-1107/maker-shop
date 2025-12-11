@@ -63,9 +63,9 @@ const ProductCard = ({
         <div className="aspect-square overflow-hidden">
           <ImageWithLoader src={image} alt={name} />
         </div>
-        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
+        {/* <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
           ${price.toFixed(2)}
-        </div>
+        </div> */}
       </CardHeader>
 
       <CardContent className="p-4 space-y-2">
