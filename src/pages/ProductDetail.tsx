@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
-import { useNabor } from "@/hooks/useNabor";
 import ImageWithLoader from "@/components/ImageWithLoader";
+import { useProduct } from "@/hooks/useNabor";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -15,9 +15,12 @@ const ProductDetail = () => {
   const { addItem } = useCart();
   const { t, language } = useLanguage();
   const { toast } = useToast();
-  const { getOneNabor } = useNabor();
+  const { getOneProduct } = useProduct();
 
-  const { data: product, isLoading, isError } = getOneNabor(id!);
+  const { data: response, isLoading, isError } = getOneProduct(id!);
+
+  // Backend { success, data } wrapper ni handle qilish
+  const product = (response as any)?.data || response;
 
   if (isLoading) {
     return (
@@ -40,53 +43,43 @@ const ProductDetail = () => {
     );
   }
 
-  const name =
-    product[`name_${language}` as keyof typeof product] || product.name_uz;
-  const description =
-    product[`description_${language}` as keyof typeof product] ||
-    product.description_uz;
+  const displayName =
+    language === "uz"
+      ? product.name_uz
+      : language === "ru"
+      ? product.name_ru
+      : product.name_en;
+
+  const displayDescription =
+    language === "uz"
+      ? product.description_uz
+      : language === "ru"
+      ? product.description_ru
+      : product.description_en;
+
+  // Category ichida keladi
+  const categoryName = product.category
+    ? language === "uz"
+      ? product.category.name_uz
+      : language === "ru"
+      ? product.category.name_ru
+      : product.category.name_en
+    : null;
 
   const handleAddToCart = () => {
     addItem({
       id: product.id,
-      name,
+      name_uz: product.name_uz,
+      name_en: product.name_en,
+      name_ru: product.name_ru,
       price: Number(product.price),
       image: product.image,
-      difficulty: 3,
-      description,
     });
 
     toast({
       title: t("addedToCart"),
-      description: `${name} ${t("addedToCartMessage")}`,
+      description: `${displayName} ${t("addedToCartMessage")}`,
     });
-  };
-
-  // 🔹 Har bir ro‘yxatni chiqarish uchun umumiy funksiya
-  const renderList = (title: string, items: any[] = []) => {
-    const textNo =
-      language === "uz" ? "Yo‘q" : language === "ru" ? "Нет" : "None";
-
-    return (
-      <div className="bg-muted/30 p-4 rounded-xl shadow-inner border border-border/40">
-        <h3 className="font-semibold text-lg mb-2">{title}</h3>
-        {items.length > 0 ? (
-          <ul className="list-disc ml-5 space-y-1 text-sm">
-            {items.map((item) => (
-              <li key={item.id}>
-                {language === "uz"
-                  ? item.name_uz
-                  : language === "ru"
-                  ? item.name_ru
-                  : item.name_en}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-muted-foreground text-sm">{textNo}</p>
-        )}
-      </div>
-    );
   };
 
   return (
@@ -104,30 +97,32 @@ const ProductDetail = () => {
         </Button>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {/* Chap tomonda rasm */}
+          {/* Chap — rasm */}
           <div className="aspect-square rounded-2xl overflow-hidden shadow-soft hover-lift">
-            <ImageWithLoader src={product.image} alt={name} />
+            <ImageWithLoader src={product.image} alt={displayName} />
           </div>
 
-          {/* O‘ng tomonda tafsilotlar */}
+          {/* O'ng — tafsilotlar */}
           <div className="space-y-6">
             <div>
-              <h1 className="font-heading text-4xl md:text-5xl font-bold text-gradient mb-4">
-                {name}
-              </h1>
-              <p className="text-3xl font-semibold text-primary mb-4">
-                {Number(product.price).toLocaleString()} so‘m
-              </p>
-              <p className="text-lg text-muted-foreground mb-6">
-                {description}
-              </p>
-            </div>
+              {/* Kategoriya badge */}
+              {categoryName && (
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20 mb-3">
+                  {categoryName}
+                </span>
+              )}
 
-            {/* 🔹 Andozalar / Furnituralar / Aksessuarlar */}
-            <div className="space-y-4">
-              {renderList(t("andozalar"), product.Andozalar)}
-              {renderList(t("furnituralar"), product.Furnitures)}
-              {renderList(t("aksessuarlar"), product.Accessories)}
+              <h1 className="font-heading text-4xl md:text-5xl font-bold text-gradient mb-4">
+                {displayName}
+              </h1>
+
+              <p className="text-3xl font-semibold text-primary mb-4">
+                {Number(product.price).toLocaleString()} so'm
+              </p>
+
+              <p className="text-lg text-muted-foreground mb-6">
+                {displayDescription}
+              </p>
             </div>
 
             <Button

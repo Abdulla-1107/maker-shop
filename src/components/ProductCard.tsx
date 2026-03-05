@@ -14,43 +14,40 @@ import { useToast } from "@/hooks/use-toast";
 
 interface ProductCardProps {
   id: string;
-  name: string;
+  name_uz: string;
+  name_en: string;
+  name_ru: string;
   price?: number;
   image: string;
-  difficulty?: number;
   description?: string;
+  categoryName?: string;
 }
 
 const ProductCard = ({
   id,
-  name,
+  name_uz,
+  name_en,
+  name_ru,
   price = 0,
   image,
-  difficulty = 0,
   description,
+  categoryName,
 }: ProductCardProps) => {
   const navigate = useNavigate();
   const { addItem } = useCart();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { toast } = useToast();
 
-  const difficultyDots = Array(5)
-    .fill(0)
-    .map((_, i) => (
-      <div
-        key={i}
-        className={`w-2 h-2 rounded-full ${
-          i < difficulty ? "bg-primary" : "bg-muted"
-        }`}
-      />
-    ));
+  // Tilga qarab nomni tanlash
+  const displayName =
+    language === "uz" ? name_uz : language === "ru" ? name_ru : name_en;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
-    addItem({ id, name, price, image, difficulty, description });
+    addItem({ id, name_uz, name_en, name_ru, price, image });
     toast({
       title: t("addedToCart"),
-      description: `${name} ${t("addedToCartMessage")}`,
+      description: `${displayName} ${t("addedToCartMessage")}`,
     });
   };
 
@@ -61,27 +58,21 @@ const ProductCard = ({
     >
       <CardHeader className="p-0 relative overflow-hidden">
         <div className="aspect-square overflow-hidden">
-          <ImageWithLoader src={image} alt={name} />
+          <ImageWithLoader src={image} alt={displayName} />
         </div>
-        {/* <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
-          ${price.toFixed(2)}
-        </div> */}
       </CardHeader>
 
       <CardContent className="p-4 space-y-2">
-        <h3 className="font-heading text-lg font-semibold">{name}</h3>
+        {categoryName && (
+          <span className="inline-block px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+            {categoryName}
+          </span>
+        )}
+        <h3 className="font-heading text-lg font-semibold">{displayName}</h3>
         {description && (
           <p className="text-sm text-muted-foreground line-clamp-2">
             {description}
           </p>
-        )}
-        {difficulty > 0 && (
-          <div className="flex items-center space-x-1">
-            {difficultyDots}
-            <span className="ml-2 text-xs text-muted-foreground">
-              Difficulty
-            </span>
-          </div>
         )}
       </CardContent>
 

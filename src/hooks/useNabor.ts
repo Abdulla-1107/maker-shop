@@ -1,20 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "./api/api";
 
-export const useNabor = () => {
-  const getNabor = (props: any) =>
+export const useProduct = () => {
+  const getProduct = (props: any) =>
     useQuery({
-      queryKey: ["nabor", props],
+      queryKey: ["product", props],
       queryFn: () =>
-        api.get("/nabor", { params: props }).then((res) => res.data),
+        api.get("/product", { params: props }).then((res) => res.data),
     });
 
-  const getOneNabor = (id: string) => {
+  const getOneProduct = (id: string) => {
     return useQuery({
-      queryKey: ["nabor", id],
-      queryFn: () => api.get(`/nabor/${id}`).then((res) => res.data),
+      queryKey: ["product", id],
+      queryFn: () => api.get(`/product/${id}`).then((res) => res.data),
     });
   };
 
-  return { getNabor, getOneNabor };
+  return { getProduct, getOneProduct };
 };

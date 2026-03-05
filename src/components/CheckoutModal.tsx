@@ -31,14 +31,19 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
     name: "",
     phone: "",
     address: "",
+    email: "",
     ofertaAccepted: false,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // ✅ Ma’lumotlarni tekshirish
-    if (!formData.name || !formData.phone || !formData.address) {
+    if (
+      !formData.name ||
+      !formData.phone ||
+      !formData.address ||
+      !formData.email
+    ) {
       toast({
         title: t("error"),
         description: t("fillAllFields"),
@@ -56,23 +61,29 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
       return;
     }
 
-    // ✅ Yuboriladigan ma’lumot
     const orderData = {
       fullName: formData.name,
-      phoneNumber: formData.phone,
-      location: formData.address,
+      phone: formData.phone,
+      address: formData.address,
+      email: formData.email,
       oferta: formData.ofertaAccepted,
-      orderItems: items.map((item) => ({
-        naborId: item.id,
+      totalPrice: totalPrice,
+      items: items.map((item) => ({
+        productId: item.id,
         quantity: item.quantity,
       })),
     };
 
     try {
       await createOrder.mutateAsync(orderData);
-
       clearCart();
-      setFormData({ name: "", phone: "", address: "", ofertaAccepted: false });
+      setFormData({
+        name: "",
+        phone: "",
+        address: "",
+        email: "",
+        ofertaAccepted: false,
+      });
       onClose();
     } catch (error) {
       console.error("Order error:", error);
@@ -81,7 +92,6 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
 
   return (
     <>
-      {/* 🔹 Checkout Modal */}
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent className="sm:max-w-md animate-scale-in">
           <DialogHeader>
@@ -91,7 +101,6 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
           </DialogHeader>
 
           <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-            {/* Ism */}
             <div className="space-y-2">
               <Label htmlFor="name">{t("name")}</Label>
               <Input
@@ -104,7 +113,6 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
               />
             </div>
 
-            {/* Telefon */}
             <div className="space-y-2">
               <Label htmlFor="phone">{t("phone")}</Label>
               <Input
@@ -118,7 +126,19 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
               />
             </div>
 
-            {/* Manzil */}
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                placeholder="email@example.com"
+              />
+            </div>
+
             <div className="space-y-2">
               <Label htmlFor="address">{t("address")}</Label>
               <Input
@@ -127,11 +147,10 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
                 onChange={(e) =>
                   setFormData({ ...formData, address: e.target.value })
                 }
-                placeholder={t("enterAddress")}
+                placeholder="Manzilingizni kiriting"
               />
             </div>
 
-            {/* Oferta tasdiqlash */}
             <div className="flex items-start space-x-2 border-t border-border pt-4">
               <Checkbox
                 id="oferta"
@@ -155,11 +174,13 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
               </Label>
             </div>
 
-            {/* Jami summa va tugmalar */}
             <div className="pt-4 border-t border-border">
               <div className="flex justify-between text-lg font-semibold mb-4">
                 <span>{t("total")}</span>
-                <span className="text-primary">${totalPrice.toFixed(2)}</span>
+                {/* ✅ so'm formatiga o'zgartirildi */}
+                <span className="text-primary">
+                  {totalPrice.toLocaleString()} so'm
+                </span>
               </div>
 
               <div className="flex gap-2">
@@ -184,7 +205,6 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
         </DialogContent>
       </Dialog>
 
-      {/* 🔹 Oferta popup */}
       <Dialog open={isOfertaOpen} onOpenChange={setIsOfertaOpen}>
         <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto">
           <DialogHeader>
@@ -197,14 +217,13 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
             </p>
             <p>
               {t("ofertaText2") ||
-                "Buyurtma to‘g‘risidagi barcha ma’lumotlar siz tomonidan to‘g‘ri kiritilishi lozim. Xatoliklar uchun javobgarlik foydalanuvchiga yuklatiladi."}
+                "Buyurtma to'g'risidagi barcha ma'lumotlar siz tomonidan to'g'ri kiritilishi lozim. Xatoliklar uchun javobgarlik foydalanuvchiga yuklatiladi."}
             </p>
             <p>
               {t("ofertaText3") ||
-                "To‘lov va yetkazib berish shartlari alohida ko‘rsatiladi. Biz istalgan vaqtda ushbu ofertani o‘zgartirish huquqini o‘zimizda saqlab qolamiz."}
+                "To'lov va yetkazib berish shartlari alohida ko'rsatiladi. Biz istalgan vaqtda ushbu ofertani o'zgartirish huquqini o'zimizda saqlab qolamiz."}
             </p>
           </div>
-
           <div className="pt-4 flex justify-end">
             <Button onClick={() => setIsOfertaOpen(false)}>{t("close")}</Button>
           </div>

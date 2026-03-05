@@ -1,14 +1,21 @@
 import { ShoppingCart, Minus, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { useCart } from "@/contexts/CartContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import CheckoutModal from "./CheckoutModal";
 
 const CartSheet = () => {
-  const { items, updateQuantity, removeItem, totalItems, totalPrice } = useCart();
-  const { t } = useLanguage();
+  const { items, updateQuantity, removeItem, totalItems, totalPrice } =
+    useCart();
+  const { t, language } = useLanguage();
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
@@ -27,9 +34,11 @@ const CartSheet = () => {
         </SheetTrigger>
         <SheetContent className="w-full sm:max-w-lg animate-slide-in-right">
           <SheetHeader>
-            <SheetTitle className="font-heading text-2xl text-gradient">{t("cart")}</SheetTitle>
+            <SheetTitle className="font-heading text-2xl text-gradient">
+              {t("cart")}
+            </SheetTitle>
           </SheetHeader>
-          
+
           <div className="mt-8 space-y-4">
             {items.length === 0 ? (
               <div className="text-center py-12">
@@ -39,54 +48,77 @@ const CartSheet = () => {
             ) : (
               <>
                 <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
-                  {items.map((item) => (
-                    <div key={item.id} className="flex gap-4 p-4 border border-border rounded-lg hover-lift animate-fade-in">
-                      <img 
-                        src={item.image} 
-                        alt={item.name}
-                        className="w-20 h-20 object-cover rounded-lg"
-                      />
-                      <div className="flex-1">
-                        <h4 className="font-semibold mb-1">{item.name}</h4>
-                        <p className="text-sm text-muted-foreground mb-2">${item.price.toFixed(2)}</p>
-                        <div className="flex items-center gap-2">
-                          <Button
-                            size="icon"
-                            variant="outline"
-                            className="h-7 w-7"
-                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          >
-                            <Minus className="w-3 h-3" />
-                          </Button>
-                          <span className="w-8 text-center font-medium">{item.quantity}</span>
-                          <Button
-                            size="icon"
-                            variant="outline"
-                            className="h-7 w-7"
-                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          >
-                            <Plus className="w-3 h-3" />
-                          </Button>
-                          <Button
-                            size="icon"
-                            variant="ghost"
-                            className="h-7 w-7 ml-auto text-destructive"
-                            onClick={() => removeItem(item.id)}
-                          >
-                            <Trash2 className="w-3 h-3" />
-                          </Button>
+                  {items.map((item) => {
+                    // Tilga qarab nomni tanlash
+                    const displayName =
+                      language === "uz"
+                        ? item.name_uz
+                        : language === "ru"
+                          ? item.name_ru
+                          : item.name_en;
+
+                    return (
+                      <div
+                        key={item.id}
+                        className="flex gap-4 p-4 border border-border rounded-lg hover-lift animate-fade-in"
+                      >
+                        <img
+                          src={item.image}
+                          alt={displayName}
+                          className="w-20 h-20 object-cover rounded-lg"
+                        />
+                        <div className="flex-1">
+                          <h4 className="font-semibold mb-1">{displayName}</h4>
+                          <p className="text-sm text-muted-foreground mb-2">
+                            {item.price.toLocaleString()} so'm
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <Button
+                              size="icon"
+                              variant="outline"
+                              className="h-7 w-7"
+                              onClick={() =>
+                                updateQuantity(item.id, item.quantity - 1)
+                              }
+                            >
+                              <Minus className="w-3 h-3" />
+                            </Button>
+                            <span className="w-8 text-center font-medium">
+                              {item.quantity}
+                            </span>
+                            <Button
+                              size="icon"
+                              variant="outline"
+                              className="h-7 w-7"
+                              onClick={() =>
+                                updateQuantity(item.id, item.quantity + 1)
+                              }
+                            >
+                              <Plus className="w-3 h-3" />
+                            </Button>
+                            <Button
+                              size="icon"
+                              variant="ghost"
+                              className="h-7 w-7 ml-auto text-destructive"
+                              onClick={() => removeItem(item.id)}
+                            >
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
-                
+
                 <div className="pt-4 border-t border-border space-y-4">
                   <div className="flex justify-between text-lg font-semibold">
                     <span>{t("total")}</span>
-                    <span className="text-primary">${totalPrice.toFixed(2)}</span>
+                    <span className="text-primary">
+                      {totalPrice.toLocaleString()} so'm
+                    </span>
                   </div>
-                  <Button 
+                  <Button
                     className="w-full hover-glow transition-all duration-300"
                     onClick={() => {
                       setIsSheetOpen(false);
@@ -101,10 +133,10 @@ const CartSheet = () => {
           </div>
         </SheetContent>
       </Sheet>
-      
-      <CheckoutModal 
-        isOpen={isCheckoutOpen} 
-        onClose={() => setIsCheckoutOpen(false)} 
+
+      <CheckoutModal
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
       />
     </>
   );
