@@ -19,6 +19,9 @@ interface CheckoutModalProps {
   onClose: () => void;
 }
 
+const DEFAULT_EMAIL = "default@example.com";
+const DEFAULT_ADDRESS = "Toshkent";
+
 const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
   const { totalPrice, clearCart, items } = useCart();
   const { t } = useLanguage();
@@ -30,20 +33,15 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    address: "",
-    email: "",
+    address: DEFAULT_ADDRESS,
+    email: DEFAULT_EMAIL,
     ofertaAccepted: false,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (
-      !formData.name ||
-      !formData.phone ||
-      !formData.address ||
-      !formData.email
-    ) {
+    if (!formData.name || !formData.phone) {
       toast({
         title: t("error"),
         description: t("fillAllFields"),
@@ -80,8 +78,8 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
       setFormData({
         name: "",
         phone: "",
-        address: "",
-        email: "",
+        address: DEFAULT_ADDRESS,
+        email: DEFAULT_EMAIL,
         ofertaAccepted: false,
       });
       onClose();
@@ -126,31 +124,6 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                placeholder="email@example.com"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="address">{t("address")}</Label>
-              <Input
-                id="address"
-                value={formData.address}
-                onChange={(e) =>
-                  setFormData({ ...formData, address: e.target.value })
-                }
-                placeholder="Manzilingizni kiriting"
-              />
-            </div>
-
             <div className="flex items-start space-x-2 border-t border-border pt-4">
               <Checkbox
                 id="oferta"
@@ -177,7 +150,6 @@ const CheckoutModal = ({ isOpen, onClose }: CheckoutModalProps) => {
             <div className="pt-4 border-t border-border">
               <div className="flex justify-between text-lg font-semibold mb-4">
                 <span>{t("total")}</span>
-                {/* ✅ so'm formatiga o'zgartirildi */}
                 <span className="text-primary">
                   {totalPrice.toLocaleString()} so'm
                 </span>
