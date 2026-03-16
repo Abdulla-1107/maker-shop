@@ -5,8 +5,14 @@ export const useProduct = () => {
   const getProduct = (props: any) =>
     useQuery({
       queryKey: ["product", props],
-      queryFn: () =>
-        api.get("/product", { params: props }).then((res) => res.data),
+      queryFn: async () => {
+        console.log("props:", props);
+        const res = await api.get("/product", {
+          params: { limit: 100, page: 1 },
+        });
+        console.log("response:", res.data);
+        return res.data;
+      },
     });
 
   const getOneProduct = (id: string) => {
