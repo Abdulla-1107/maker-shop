@@ -208,7 +208,7 @@ const translations = {
       "Brend asoschisi, 6 yillik tajribaga ega usta hunarmand Nodira Abdullaevna qo‘g‘irchoq yasash san’atini boshqalarga ham o‘rgatish niyatida onlayn video darsliklarni yo‘lga qo‘ydi. Yillar davomida ijodning iliqligi, nozik detallar va qo‘lda yaratilgan mehr — Mahina Dollsning asosiy tamoyiliga aylandi.",
     aboutText3:
       "Bugungi kunda Mahina Dolls 6 ta tayyor qo‘g‘irchoq tikish to‘plamlarini taqdim etadi. Ushbu to‘plamlar orqali 300 dan ortiq o‘quvchi o‘zining birinchi yoki yuzinchi qo‘g‘irchoqlarini yaratgan. Biz sizga shunchaki material berib qo‘ymaymiz — biz sizga ilhom, qo‘llab-quvvatlash va ijodiy sayohatni taqdim etamiz. Ijodiy oilamizga qo‘shiling 💕",
-    madeWithLove: "Muhabbat bilan yaratilgan",
+    madeWithLove: "Mehr bilan yaratilgan",
     madeWithLoveDesc:
       "Har bir to'plam tafsilotlarga e'tibor va hunarga muhabbat bilan tanlanadi",
     sparkCreativity: "Ijodkorlikni uyg'otish",
@@ -240,7 +240,7 @@ const translations = {
 
     // Footer
     footerTagline:
-      "Muhabbat bilan qo'lda ishlangan, g'amxo'rlik bilan yaratilgan",
+      "Mehr bilan qo'lda ishlangan, g'amxo'rlik bilan yaratilgan",
     quickLinks: "Tezkor havolalar",
     connectWithUs: "Biz bilan bog'laning",
     allRightsReserved: "Barcha huquqlar himoyalangan",

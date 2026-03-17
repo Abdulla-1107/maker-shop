@@ -13,113 +13,105 @@ const Shop = () => {
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const {
-    data: responseData,
-    isLoading,
-    error,
-  } = getProduct(
-    selectedCategory ? { categoryId: selectedCategory } : undefined,
+  // 🔥 categoryId to‘g‘ri yuborilyapti
+  const { data, isLoading, error } = getProduct(
+    selectedCategory !== null ? { categoryId: selectedCategory } : undefined,
   );
+
   const { data: categoryData } = getCategory({});
 
-  const products = responseData?.data || responseData || [];
+  const products = data?.data || data || [];
   const categories = categoryData?.data || categoryData || [];
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-lg font-medium">{t("loading")}...</p>
+        <p>{t("loading")}...</p>
       </div>
     );
+  }
 
-  if (error)
+  if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center text-red-500">
         <p>{t("errorLoadingProducts")}</p>
       </div>
     );
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
 
       <main className="flex-grow container mx-auto px-4 py-12">
-        <div className="text-center mb-12 space-y-4 animate-fade-in">
-          <h1 className="font-heading text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary via-pink-500 to-purple-500 dark:from-pink-400 dark:via-purple-400 dark:to-indigo-300 bg-clip-text text-transparent">
-            {t("shopTitle")}
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto dark:text-gray-300">
-            {t("shopSubtitle")}
-          </p>
+        {/* TITLE */}
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-bold">{t("shopTitle")}</h1>
+          <p className="text-muted-foreground">{t("shopSubtitle")}</p>
         </div>
 
-        {/* Kategoriya filterlari */}
-        {categories.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-8 justify-center">
-            <button
-              onClick={() => setSelectedCategory(null)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
-                selectedCategory === null
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-background text-muted-foreground border-border hover:border-primary hover:text-primary"
-              }`}
-            >
-              {language === "uz"
-                ? "Barchasi"
+        {/* CATEGORY FILTER */}
+        <div className="flex flex-wrap gap-2 mb-8 justify-center">
+          <button
+            onClick={() => setSelectedCategory(null)}
+            className={`px-4 py-2 rounded-full border ${
+              selectedCategory === null
+                ? "bg-primary text-white"
+                : "bg-gray-100"
+            }`}
+          >
+            {language === "uz" ? "Barchasi" : language === "ru" ? "Все" : "All"}
+          </button>
+
+          {categories.map((cat: any) => {
+            const name =
+              language === "uz"
+                ? cat.name_uz
                 : language === "ru"
-                  ? "Все"
-                  : "All"}
-            </button>
+                  ? cat.name_ru
+                  : cat.name_en;
 
-            {categories.map((cat: any) => {
-              const catName =
-                language === "uz"
-                  ? cat.name_uz
-                  : language === "ru"
-                    ? cat.name_ru
-                    : cat.name_en;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`px-4 py-2 rounded-full border ${
+                  selectedCategory === cat.id
+                    ? "bg-primary text-white"
+                    : "bg-gray-100"
+                }`}
+              >
+                {name}
+              </button>
+            );
+          })}
+        </div>
 
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
-                    selectedCategory === cat.id
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-background text-muted-foreground border-border hover:border-primary hover:text-primary"
-                  }`}
-                >
-                  {catName}
-                </button>
-              );
-            })}
-          </div>
-        )}
-
-        {/* Mahsulotlar */}
+        {/* PRODUCTS */}
         {products.length === 0 ? (
-          <div className="text-center py-16 text-muted-foreground">
-            <p className="text-lg">
+          <div className="text-center py-10">
+            <p>
               {language === "uz"
-                ? "Mahsulotlar topilmadi"
+                ? "Mahsulot topilmadi"
                 : language === "ru"
                   ? "Товары не найдены"
                   : "No products found"}
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product: any) => {
               const category = categories.find(
                 (c: any) => c.id === product.categoryId,
               );
+
               const categoryName = category
                 ? language === "uz"
                   ? category.name_uz
                   : language === "ru"
                     ? category.name_ru
                     : category.name_en
-                : undefined;
+                : "";
 
               return (
                 <ProductCard

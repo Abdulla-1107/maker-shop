@@ -28,7 +28,7 @@ const Navigation = () => {
     { path: "/shop", label: t("shop"), icon: ShoppingBag },
     { path: "/tutorials", label: t("tutorials"), icon: BookOpen },
     { path: "/about", label: t("about"), icon: Heart },
-    { path: "/community", label: t("community"), icon: Users },
+    // { path: "/community", label: t("community"), icon: Users },
     { path: "/contact", label: t("contact"), icon: Mail },
   ];
 
