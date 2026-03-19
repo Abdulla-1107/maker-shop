@@ -9,7 +9,7 @@ interface LanguageContextType {
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
-  undefined
+  undefined,
 );
 
 const translations = {
@@ -100,6 +100,10 @@ const translations = {
     message: "Message",
     sendMessage: "Send Message",
     followUs: "Follow Us",
+    helpTitle: "We're Here to Help",
+    helpDescription: "Our team typically responds within 24 hours",
+    creativeJourneyMessage:
+      "Every message means the world to us. We're so grateful to be part of your creative journey!",
 
     // Footer
     footerTagline: "Handmade with love, crafted with care",
@@ -237,10 +241,13 @@ const translations = {
     message: "Xabar",
     sendMessage: "Xabar yuborish",
     followUs: "Bizni kuzatib boring",
+    helpTitle: "Biz yordam berish uchun shu yerdamiz",
+    helpDescription: "Jamoamiz odatda 24 soat ichida javob beradi",
+    creativeJourneyMessage:
+      "Har bir xabar biz uchun juda qadrlidir. Ijodiy sayohatingizning bir qismi bo‘lishdan juda mamnunmiz!",
 
     // Footer
-    footerTagline:
-      "Mehr bilan qo'lda ishlangan, g'amxo'rlik bilan yaratilgan",
+    footerTagline: "Mehr bilan qo'lda ishlangan, g'amxo'rlik bilan yaratilgan",
     quickLinks: "Tezkor havolalar",
     connectWithUs: "Biz bilan bog'laning",
     allRightsReserved: "Barcha huquqlar himoyalangan",
@@ -381,6 +388,10 @@ const translations = {
     message: "Сообщение",
     sendMessage: "Отправить сообщение",
     followUs: "Следите за нами",
+    helpTitle: "Мы здесь, чтобы помочь",
+    helpDescription: "Наша команда обычно отвечает в течение 24 часов",
+    creativeJourneyMessage:
+      "Каждое сообщение очень важно для нас. Мы очень благодарны за возможность быть частью вашего творческого пути!",
 
     // Footer
     footerTagline: "Сделано с любовью, создано с заботой",

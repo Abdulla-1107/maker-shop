@@ -57,7 +57,7 @@ const Contact = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
-                    placeholder="Emma Johnson"
+                    placeholder="To'liq ismingiz"
                     required
                     className="transition-all focus:shadow-soft"
                   />
@@ -74,7 +74,7 @@ const Contact = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    placeholder="emma@example.com"
+                    placeholder="example@gmail.com"
                     required
                     className="transition-all focus:shadow-soft"
                   />
@@ -90,7 +90,7 @@ const Contact = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
                     }
-                    placeholder="Tell us what's on your mind..."
+                    placeholder="Xabar"
                     required
                     rows={6}
                     className="transition-all focus:shadow-soft resize-none"
@@ -117,13 +117,9 @@ const Contact = () => {
 
                 <div className="text-center space-y-2">
                   <h3 className="font-heading text-xl font-semibold">
-                    We're Here to Help
+                    {t("helpTitle")}
                   </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Our team typically responds within 24 hours
-                  </p>
                 </div>
-
                 <div className="border-t border-border pt-6 space-y-4">
                   <h4 className="font-heading font-semibold">
                     {t("followUs")}
@@ -144,7 +140,7 @@ const Contact = () => {
                   </a>
 
                   <a
-                    href="https://t.me"
+                    href="https://t.me/Nodira_Abdullaevna"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted transition-colors group"
@@ -163,8 +159,7 @@ const Contact = () => {
             <Card className="border-border/50 shadow-soft bg-gradient-to-br from-primary/10 to-secondary/10">
               <CardContent className="p-6 md:p-8 text-center space-y-3">
                 <p className="text-sm text-muted-foreground">
-                  "Every message means the world to us. We're so grateful to be
-                  part of your creative journey!"
+                  {t("creativeJourneyMessage")}
                 </p>
                 <p className="font-heading font-semibold">- Nodira 💕</p>
               </CardContent>

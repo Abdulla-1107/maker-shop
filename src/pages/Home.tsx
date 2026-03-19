@@ -95,19 +95,19 @@ const Home = () => {
             })}
           </div>
 
-          <div className="mt-12 text-center">
+          {/* <div className="mt-12 text-center">
             <div className="inline-block bg-muted/50 rounded-xl p-6 space-y-2">
               <p className="text-sm text-muted-foreground">You'll also need:</p>
               <p className="font-medium">
                 Glue gun • Thick thread • Synthetic fiber
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* Difficulty Indicator Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
+      {/* <section className="py-20 px-4 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
         <div className="container mx-auto text-center space-y-8">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-gradient">
             Perfect for Every Skill Level
@@ -135,7 +135,7 @@ const Home = () => {
             Easy to Advanced - We guide you every step!
           </p>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-20 px-4">
