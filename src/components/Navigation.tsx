@@ -41,7 +41,7 @@ const Navigation = () => {
             <Heart className="w-6 h-6 text-white" fill="white" />
           </div>
           <span className="font-heading text-2xl font-bold text-gradient">
-            Nodira
+            MahinaDolls
           </span>
         </Link>
 

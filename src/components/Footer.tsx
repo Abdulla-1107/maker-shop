@@ -17,7 +17,7 @@ const Footer = () => {
                 <Heart className="w-6 h-6 text-white" fill="white" />
               </div>
               <span className="font-heading text-2xl font-bold text-gradient">
-                Nodira
+                MahinaDolls
               </span>
             </div>
             <p className="text-muted-foreground text-sm">
